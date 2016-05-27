@@ -1,0 +1,21 @@
+{
+  "name": "pycollect-web",
+  "authors": [
+    "Sebastien Bariteau <numkem@numkem.org>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "Chart.js": "^2.1.3"
+  }
+}

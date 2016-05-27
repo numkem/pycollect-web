@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block page %}
+<h1>Consoles</h1>
+{% for platform in games.keys()|sort %}
+  {{ platform }}
+{% endfor %}
+<h2>Graph</h2>
+<canvas id="consoleGraph"></canv>
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+<script src="{{ url_for('bower.static', filename='Chart.js/dist/Chart.min.js') }}"></script>
+<script>
+ function randomColorGenerator() { 
+   return '#' + (Math.random().toString(16) + '0000000').slice(2, 8); 
+ }
+
+ var gamesData = {{ games|tojson }};
+ var ctx = document.getElementById("consoleGraph");
+ colors = function() {
+   colorsPicked = [];
+
+   for (i=0; i < Object.keys(gamesData).length; i++) {
+     colorsPicked.push(randomColorGenerator());
+   }
+   return colorsPicked;
+ };
+ var consoleChart = new Chart(ctx, {
+   type: 'doughnut',
+   data: {
+    labels: Object.keys(gamesData),
+    datasets: [{
+      label: "Games per console",
+      backgroundColor: colors(),
+      data: Object.keys(gamesData).map(function(v) {return gamesData[v]; })
+    }]
+   }
+ })
+</script>
+{% endblock %}

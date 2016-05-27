@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% import "macros.html" as macros %}
+
+{% block page %}
+<div class="row">
+  <div class="col-md-3"></div>
+  <div class="col-md-6">
+    <h1>Search</h1>
+    {{ wtf.quick_form(form, button_map={'submit': 'primary'}) }}
+  </div>
+</div>
+<br/>
+<h4>Results</h4>
+{% if results is not none %}
+{{ macros.game_list(results) }}
+{% endif %}
+{% endblock %}

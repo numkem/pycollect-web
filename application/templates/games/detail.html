@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block page %}
+<h1>{{game['name']}}</h1>
+<br/>
+<div class="row">
+  <div class="col-md-1"></div>
+  <div class="col-md-3">
+    <img src="{{game['image']}}"/>
+  </div>
+  <div class="col-md-6">
+  {% for d in ['name', 'platform', 'genre', 'barcode', 'condition', 'box_text'] %}
+    {% if game[d] is not none %}
+    <div id="{{d}}"><strong>{{d|replace('_', ' ')|capitalize}}:</strong> {{game[d]}}</div>
+    {% endif %}
+  {% endfor %}
+  </div>
+</div>
+{% endblock %}

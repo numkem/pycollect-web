@@ -1,0 +1,20 @@
+{% macro game_list(games) %}
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Console</th>
+      <th>Condition</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for game in games %}
+    <tr data-object-id="{{ game['_id'] }}">
+      <td><a href="{{ url_for('game_detail', id=game['_id']) }}">{{ game['name'] }}</a></td>
+      <td>{{ game['platform'] }}</td>
+      <td>{{ game['condition']|condition }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endmacro %}
